@@ -9,9 +9,10 @@ class WordsController < ApplicationController
 
 	def statistics
 		ws = Requests::WordStatistics.new
-		count = ws.get_stats(params[:key])
+		key = params[:key].downcase
+		count = ws.get_stats(key)
 
-		render json: {params[:key] => count.to_i}
+		render json: {key => count.to_i}
 	end
 
 	def flushall
